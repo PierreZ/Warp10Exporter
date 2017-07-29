@@ -24,3 +24,8 @@ func main() {
   warp.PushBatch(batch, "http://localhost:8080", "WRITE_TOKEN")
 }
 ```
+
+## TODO
+
+ * Add possibility to flush in files for [Beamium](https://github.com/runabove/beamium)
+ * Order Datapoints before writing into buffer to optimize parsing on Warp10 side
