@@ -29,3 +29,4 @@ func main() {
 
  * Add possibility to flush in files for [Beamium](https://github.com/runabove/beamium)
  * Order Datapoints before writing into buffer to optimize parsing on Warp10 side
+ * Add Geo on GTS and create Method WithGeo(...)
