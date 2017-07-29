@@ -9,7 +9,7 @@ Example:
 
   func main() {
 
-    gts := warp.CreateGTS("metrics.test").WithLabels(warp.Labels{
+    gts := warp.NewGTS("metrics.test").WithLabels(warp.Labels{
       "ip": "1.2.3.4",
     }).AddDatapoint(time.Now(), "42")
     warp.PushGTS(gts, "http://localhost:8080", "WRITE_TOKEN")

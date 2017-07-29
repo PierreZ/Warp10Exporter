@@ -39,7 +39,7 @@ func (gts *GTS) getIdentifier() string {
 type Labels map[string]string
 
 // CreateGTS is creating a new GTS with a name and a value
-func CreateGTS(classname string) *GTS {
+func NewGTS(classname string) *GTS {
 
 	gts := &GTS{
 		Classname: classname,

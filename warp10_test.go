@@ -15,7 +15,7 @@ func TestGTSCreation(t *testing.T) {
 		"ip": "1.2.3.4",
 	}
 
-	gts := CreateGTS(classname).WithLabels(labels).AddDatapoint(ts, "42")
+	gts := NewGTS(classname).WithLabels(labels).AddDatapoint(ts, "42")
 
 	singleGTS := "1257894000000000// test{ip=1.2.3.4} \"42\"\n"
 
