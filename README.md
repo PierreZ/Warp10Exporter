@@ -1,6 +1,5 @@
 # Warp10Exporter [![Build Status](https://travis-ci.org/PierreZ/Warp10Exporter.svg?branch=master)](https://travis-ci.org/PierreZ/Warp10Exporter) [![GoDoc](https://godoc.org/github.com/PierreZ/Warp10Exporter?status.svg)](https://godoc.org/github.com/PierreZ/Warp10Exporter)
-Structured warp10 Input Format for Go.
-
+A Go framework to generate and push metrics to Warp10
 
 ## Example
 
