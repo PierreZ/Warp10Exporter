@@ -12,7 +12,7 @@ Example:
     gts := warp.CreateGTS("metrics.test").WithLabels(warp.Labels{
       "ip": "1.2.3.4",
     }).AddDatapoint(time.Now(), "42")
-    warp.Push(gts, "http://localhost:8080", "WRITE_TOKEN")
+    warp.PushGTS(gts, "http://localhost:8080", "WRITE_TOKEN")
 
     // You can also create batchs
     batch := warp.NewBatch()

@@ -21,7 +21,7 @@ func pushGTS(b *bytes.Buffer, warp10Endpoint string, warp10Token string) error {
 }
 
 // Push is pushing a single GTS to a warp10 endpoint
-func Push(gts *GTS, warp10Endpoint string, warp10Token string) error {
+func PushGTS(gts *GTS, warp10Endpoint string, warp10Token string) error {
 	var b bytes.Buffer
 	gts.printGTS(&b)
 	return pushGTS(&b, warp10Endpoint, warp10Token)
