@@ -1,4 +1,4 @@
-package Warp10Helper
+package Warp10Exporter
 
 var warpURI = "/api/v0/update"
 

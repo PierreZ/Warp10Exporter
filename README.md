@@ -1,4 +1,4 @@
-# Warp10Helper [![Build Status](https://travis-ci.org/PierreZ/Warp10Helper.svg?branch=master)](https://travis-ci.org/PierreZ/Warp10Helper) [![GoDoc](https://godoc.org/github.com/PierreZ/Warp10Helper?status.svg)](https://godoc.org/github.com/PierreZ/Warp10Helper)
+# Warp10Exporter [![Build Status](https://travis-ci.org/PierreZ/Warp10Exporter.svg?branch=master)](https://travis-ci.org/PierreZ/Warp10Exporter) [![GoDoc](https://godoc.org/github.com/PierreZ/Warp10Exporter?status.svg)](https://godoc.org/github.com/PierreZ/Warp10Exporter)
 Structured warp10 Input Format for Go.
 
 
@@ -8,7 +8,7 @@ Structured warp10 Input Format for Go.
 package main
 
 import (
-  warp "github.com/PierreZ/Warp10Helper"
+  warp "github.com/PierreZ/Warp10Exporter"
 )
 
 func main() {

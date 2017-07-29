@@ -1,4 +1,4 @@
-package Warp10Helper
+package Warp10Exporter
 
 // Batch is allowing you to push multiples GTS in a single push
 type Batch map[string]GTS

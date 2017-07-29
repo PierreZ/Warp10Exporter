@@ -1,10 +1,10 @@
 /*
-Package Warp10Helper is an helper to create GTS for Warp10
+Package Warp10Exporter is an helper to create GTS for Warp10
 Example:
   package main
 
   import (
-    warp "github.com/PierreZ/Warp10Helper"
+    warp "github.com/PierreZ/Warp10Exporter"
   )
 
   func main() {
@@ -21,6 +21,6 @@ Example:
     warp.PushBatch(batch, "http://localhost:8080", "WRITE_TOKEN")
   }
 
-For a full guide visit https://github.com/PierreZ/Warp10Helper
+For a full guide visit https://github.com/PierreZ/Warp10Exporter
 */
-package Warp10Helper
+package Warp10Exporter

@@ -1,4 +1,4 @@
-package Warp10Helper
+package Warp10Exporter
 
 import (
 	"bytes"
