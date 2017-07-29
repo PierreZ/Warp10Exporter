@@ -1,5 +1,6 @@
-# Warp10Helper ![Build Status](https://travis-ci.org/PierreZ/Warp10Helper.svg?branch=master)](https://travis-ci.org/PierreZ/Warp10Helper)&nbsp;[![GoDoc](https://godoc.org/github.com/PierreZ/Warp10Helper?status.svg)](https://godoc.org/github.com/PierreZ/Warp10Helper)
+# Warp10Helper [![Build Status](https://travis-ci.org/PierreZ/Warp10Helper.svg?branch=master)](https://travis-ci.org/PierreZ/Warp10Helper) [![GoDoc](https://godoc.org/github.com/PierreZ/Warp10Helper?status.svg)](https://godoc.org/github.com/PierreZ/Warp10Helper)
 Structured warp10 Input Format for Go.
+
 
 ## Example
 
