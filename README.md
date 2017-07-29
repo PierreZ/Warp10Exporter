@@ -4,7 +4,6 @@ Structured warp10 Input Format for Go.
 
 ## Example
 
-TODO
 ```go 
 package main
 import (
