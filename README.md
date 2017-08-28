@@ -21,11 +21,11 @@ func main() {
   // You can also create batchs
   batch := warp.NewBatch()
   batch.Register(gts)
-	gts.AddDatapoint(ts, 42)
+  gts.AddDatapoint(ts, 42)
 
   statuscode := batch.Push("http://localhost:8080", "WRITE_TOKEN")
   if statuscode != http.StatusOK {
-      // You can also write metrics to a file, to use Beamium for example
+      // You can also write metrics to a file, to use https://github.com/runabove/beamium for example
     	err := batch.FlushOnDisk("/opt/beamium/sink")
 	    if err != nil {
 		    panic(err)
@@ -36,6 +36,5 @@ func main() {
 
 ## TODO
 
- * Add possibility to flush in files for [Beamium](https://github.com/runabove/beamium)
  * Order Datapoints before writing into buffer to optimize parsing on Warp10 side
- * Add Geo on GTS and create Method WithGeo(...)
+ * Add Geo on Datapoints by creating NewGeoDatapoints(...)
