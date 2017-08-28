@@ -2,9 +2,7 @@ package Warp10Exporter
 
 import (
 	"bytes"
-	"crypto/md5"
 	"fmt"
-	"io"
 	"strconv"
 	"strings"
 	"time"
@@ -26,19 +24,10 @@ type GTS struct {
 	Datapoints Datapoints
 }
 
-// getIdentifier is returning an identifier for a GTS
-// The identifier is useful to handle a map of GTS
-func (gts *GTS) getIdentifier() string {
-
-	var md5Hash = md5.New()
-	io.WriteString(md5Hash, gts.Classname+"{"+gts.getLabels()+"}")
-	return fmt.Sprintf("%x", md5.Sum(nil))
-}
-
 // Labels type, used to pass to `WithLabels`.
 type Labels map[string]string
 
-// CreateGTS is creating a new GTS with a name and a value
+// NewGTS is creating a new GTS with a name and a value
 func NewGTS(classname string) *GTS {
 
 	gts := &GTS{
@@ -61,7 +50,7 @@ func (gts *GTS) WithLabels(labels Labels) *GTS {
 	return gts
 }
 
-// PrintValue is printing the value
+// PrintValue is Printing the value
 // It's supporting string
 func (dp *Datapoint) PrintValue() string {
 	switch v := dp.Value.(type) {
@@ -79,18 +68,22 @@ func (gts *GTS) AddLabel(key string, value string) *GTS {
 	return gts
 }
 
-// printDatapoint respects the following format:
+// Print is printing the Warp10 Input Format
+// it respects the following format:
 // TS// NAME{LABELS} VALUE
-func (gts GTS) printGTS(b *bytes.Buffer) {
+func (gts *GTS) Print(b *bytes.Buffer) {
 
-	for _, dp := range gts.Datapoints {
+	for i, dp := range gts.Datapoints {
 		ts := dp.Timestamp.Unix() * 1000 * 1000
-		b.WriteString(fmt.Sprintf("%d// %s{%s} %v\n", ts, gts.Classname, gts.getLabels(), dp.PrintValue()))
+		b.WriteString(fmt.Sprintf("%d// %s{%s} %v", ts, gts.Classname, gts.getLabels(), dp.PrintValue()))
+		if i != len(gts.Datapoints)-1 {
+			b.WriteString("\n")
+		}
 	}
 }
 
 // getLabels format the map into the right form
-func (gts GTS) getLabels() string {
+func (gts *GTS) getLabels() string {
 
 	var s string
 	for key, value := range gts.Labels {
@@ -100,4 +93,11 @@ func (gts GTS) getLabels() string {
 	// Removing last comma
 	s = strings.TrimSuffix(s, ",")
 	return s
+}
+
+// Push is pushing a single GTS to a warp10 endpoint
+func (gts *GTS) Push(warp10Endpoint string, warp10Token string) int {
+	var b bytes.Buffer
+	gts.Print(&b)
+	return pushGTS(&b, warp10Endpoint, warp10Token)
 }

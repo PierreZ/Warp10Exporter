@@ -15,13 +15,22 @@ func main() {
   gts := warp.NewGTS("metrics.test").WithLabels(warp.Labels{
     "ip": "1.2.3.4",
   }).AddDatapoint(time.Now(), "42")
-  warp.PushGTS(gts, "http://localhost:8080", "WRITE_TOKEN")
+  // Not checking the error
+  gts.Push("http://localhost:8080", "WRITE_TOKEN")
 
   // You can also create batchs
   batch := warp.NewBatch()
-  batch.AddGTS(gts)
+  batch.Register(gts)
+	gts.AddDatapoint(ts, 42)
 
-  warp.PushBatch(batch, "http://localhost:8080", "WRITE_TOKEN")
+  statuscode := batch.Push("http://localhost:8080", "WRITE_TOKEN")
+  if statuscode != http.StatusOK {
+      // You can also write metrics to a file, to use Beamium for example
+    	err := batch.FlushOnDisk("/opt/beamium/sink")
+	    if err != nil {
+		    panic(err)
+	    }
+	}
 }
 ```
 

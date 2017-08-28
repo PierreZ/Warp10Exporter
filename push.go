@@ -5,34 +5,17 @@ import (
 	"net/http"
 )
 
-func pushGTS(b *bytes.Buffer, warp10Endpoint string, warp10Token string) error {
+func pushGTS(b *bytes.Buffer, warp10Endpoint string, warp10Token string) int {
 	req, err := http.NewRequest("POST", warp10Endpoint+warpURI, b)
 	req.Header.Set(warpHeader, warp10Token)
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if resp.StatusCode != 200 {
-		return err
+		return http.StatusInternalServerError
 	}
 	if err != nil {
-		return err
+		return http.StatusInternalServerError
 	}
 	defer resp.Body.Close()
-	return nil
-}
-
-// Push is pushing a single GTS to a warp10 endpoint
-func PushGTS(gts *GTS, warp10Endpoint string, warp10Token string) error {
-	var b bytes.Buffer
-	gts.printGTS(&b)
-	return pushGTS(&b, warp10Endpoint, warp10Token)
-}
-
-// PushBatch is pushing a GTS batch to a warp10 endpoint
-func PushBatch(batch *Batch, warp10Endpoint string, warp10Token string) error {
-	var b bytes.Buffer
-	for _, gts := range *batch {
-		gts.printGTS(&b)
-	}
-
-	return pushGTS(&b, warp10Endpoint, warp10Token)
+	return http.StatusOK
 }

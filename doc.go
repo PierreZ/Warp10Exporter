@@ -16,7 +16,7 @@ Example:
 
     // You can also create batchs
     batch := warp.NewBatch()
-    batch.AddGTS(gts)
+    batch.Register(gts)
 
     warp.PushBatch(batch, "http://localhost:8080", "WRITE_TOKEN")
   }
