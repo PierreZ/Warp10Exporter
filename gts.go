@@ -3,6 +3,7 @@ package Warp10Exporter
 import (
 	"bytes"
 	"fmt"
+	"net/url"
 	"strconv"
 	"strings"
 	"time"
@@ -31,7 +32,7 @@ type Labels map[string]string
 func NewGTS(classname string) *GTS {
 
 	gts := &GTS{
-		Classname: classname,
+		Classname: url.QueryEscape(classname),
 		Labels:    make(map[string]string),
 	}
 	return gts
@@ -88,16 +89,9 @@ func (gts *GTS) getLabels() string {
 	var s string
 	for key, value := range gts.Labels {
 
-		s = s + key + "=" + value + ","
+		s = s + url.QueryEscape(key) + "=" + url.QueryEscape(value) + ","
 	}
 	// Removing last comma
 	s = strings.TrimSuffix(s, ",")
 	return s
-}
-
-// Push is pushing a single GTS to a warp10 endpoint
-func (gts *GTS) Push(warp10Endpoint string, warp10Token string) int {
-	var b bytes.Buffer
-	gts.Print(&b)
-	return pushGTS(&b, warp10Endpoint, warp10Token)
 }
