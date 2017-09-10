@@ -3,6 +3,7 @@ package Warp10Exporter
 import (
 	"bytes"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -18,7 +19,12 @@ func pushGTS(b *bytes.Buffer, warp10Endpoint string, warp10Token string) error {
 		return err
 	}
 	if resp.StatusCode != 200 {
-		return fmt.Errorf("Warp10 response status is %d", resp.StatusCode)
+		var b []byte
+		b, err = ioutil.ReadAll(resp.Body)
+		if err != nil {
+			return err
+		}
+		return fmt.Errorf("Warp10 response status is %d, body='%s'", resp.StatusCode, string(b))
 	}
 
 	defer resp.Body.Close()
