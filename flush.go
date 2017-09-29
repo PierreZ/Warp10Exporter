@@ -3,6 +3,7 @@ package Warp10Exporter
 import (
 	"bytes"
 	"io/ioutil"
+	"path/filepath"
 	"time"
 )
 
@@ -28,6 +29,6 @@ func (batch *Batch) FlushOnDisk(path string) error {
 
 func writeFile(b *bytes.Buffer, path string) error {
 	// Generating filename
-	filename := path + "-" + string(time.Now().Nanosecond()) + ".warp10"
-	return ioutil.WriteFile(filename, b.Bytes(), 0644)
+	filename := path + "/" + string(time.Now().UnixNano()) + ".warp10"
+	return ioutil.WriteFile(filepath.Clean(filename), b.Bytes(), 0644)
 }
