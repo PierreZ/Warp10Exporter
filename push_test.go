@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 )
 
@@ -23,19 +24,17 @@ func TestGTSPush(t *testing.T) {
 	defer singleGTSValidatorServer.Close()
 
 	err := singleGTSSingleDatapoint.Push(internalServerError.URL, "abcd")
-	expected := errors.New("Warp10 response status is 500")
-	if err.Error() != expected.Error() {
-		t.Errorf("Expected '%v', got '%v'", expected, err)
+	if !strings.Contains(err.Error(), "Internal Server Error") {
+		t.Errorf("Expected 'Internal Server Error', got '%v'", err)
 	}
 
 	err = singleGTSSingleDatapoint.Push(singleGTSValidatorServer.URL, "abcd")
-	expected = nil
-	if err != expected {
-		t.Errorf("Expected '%v', got '%v'", expected, err)
+	if err != nil {
+		t.Errorf("Expected 'nil', got '%v'", err)
 	}
 
 	err = singleGTSSingleDatapoint.Push("256.256.256.256:9091", "abcd")
-	expected = errors.New("parse 256.256.256.256:9091/api/v0/update: first path segment in URL cannot contain colon")
+	expected := errors.New("parse 256.256.256.256:9091/api/v0/update: first path segment in URL cannot contain colon")
 	if err.Error() != expected.Error() {
 		t.Errorf("Expected '%v', got '%v'", expected, err)
 	}
