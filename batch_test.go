@@ -2,6 +2,7 @@ package Warp10Exporter
 
 import (
 	"bytes"
+	"strings"
 	"testing"
 )
 
@@ -39,7 +40,7 @@ func TestNewBatch(t *testing.T) {
 	expected := `1257894000000000// dsa{ip=1.2.3.4} "42"
 1257894000000000// metrics.test2{ip=1.2.3.4} 42`
 
-	if buf.String() != expected {
+	if !strings.Contains(buf.String(), `1257894000000000// dsa{ip=1.2.3.4} "42"`) && strings.Contains(buf.String(), `1257894000000000// metrics.test2{ip=1.2.3.4} 42"`) {
 		t.Errorf("Expected \n'%v'\ngot\n'%v'", expected, buf.String())
 	}
 }
