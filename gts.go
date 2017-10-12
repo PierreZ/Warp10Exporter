@@ -75,7 +75,7 @@ func (gts *GTS) AddLabel(key string, value string) *GTS {
 func (gts *GTS) Print(b *bytes.Buffer) {
 
 	for i, dp := range gts.Datapoints {
-		ts := dp.Timestamp.Unix() * 1000 * 1000
+		ts := dp.Timestamp.UnixNano() / 1000.0
 		b.WriteString(fmt.Sprintf("%d// %s{%s} %v", ts, gts.Classname, gts.getLabels(), dp.PrintValue()))
 		if i != len(gts.Datapoints)-1 {
 			b.WriteString("\n")
