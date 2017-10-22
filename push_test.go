@@ -68,10 +68,19 @@ func TestBatchPush(t *testing.T) {
 	if err != nil {
 		t.Errorf("Expected '%v', got '%v'", nil, err)
 	}
+}
+func TestEmptyBatchPush(t *testing.T) {
+	batch := NewBatch()
+	err := batch.Push("", "abcd")
+	if err != ErrEmptyBatch {
+		t.Errorf("Expected '%v', got '%v'", ErrEmptyBatch, err)
+	}
+}
 
-	batch = NewBatch()
-	err = batch.Push(singleGTSValidatorServer.URL, "abcd")
-	if err != nil {
-		t.Errorf("Expected '%v', got '%v'", nil, err)
+func TestEmptyGTSPush(t *testing.T) {
+	gts := NewGTS("test").WithLabels(labels)
+	err := gts.Push("", "abcd")
+	if err != ErrEmptyGTS {
+		t.Errorf("Expected '%v', got '%v'", ErrEmptyGTS, err)
 	}
 }

@@ -39,22 +39,3 @@ func (batch *Batch) Print(b *bytes.Buffer) {
 		i++
 	}
 }
-
-// Push is pushing a GTS batch to a warp10 endpoint
-func (batch *Batch) Push(warp10Endpoint string, warp10Token string) error {
-
-	if len(*batch) == 0 {
-		return nil
-	}
-
-	var b bytes.Buffer
-	i := 0
-	for _, gts := range *batch {
-		gts.Print(&b)
-		if i != len(*batch)-1 {
-			b.WriteString("\n")
-		}
-		i++
-	}
-	return pushGTS(&b, warp10Endpoint, warp10Token)
-}
