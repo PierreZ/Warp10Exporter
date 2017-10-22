@@ -19,7 +19,7 @@ var singleGTSSingleDatapointString = "1257894000000000// test{ip=1.2.3.4} 42"
 
 var singleGTSMultipleDatapoints = NewGTS(classname).WithLabels(labels).AddDatapoint(ts, 42).AddDatapoint(ts.Add(time.Duration(1)*time.Millisecond), "43")
 var singleGTSMultipleDatapointsString = `1257894000000000// test{ip=1.2.3.4} 42
-1257894000000000// test{ip=1.2.3.4} "43"`
+1257894000001000// test{ip=1.2.3.4} "43"`
 
 var singleGTSMultipleTypes = NewGTS(classname).WithLabels(labels).AddDatapoint(ts, 42).AddDatapoint(ts.Add(time.Duration(1)*time.Second), "43").AddDatapoint(ts.Add(time.Duration(2)*time.Second), true)
 var singleGTSMultipleTypesString = `1257894000000000// test{ip=1.2.3.4} 42
