@@ -25,7 +25,7 @@ func main() {
 
   err := batch.Push("http://localhost:8080", "WRITE_TOKEN")
   if err != nil {
-      // You can also write metrics to a file, to use https://github.com/runabove/beamium for example
+      // You can also write metrics to a file, to use https://github.com/ovh/beamium for example
     	err = batch.FlushOnDisk("/opt/beamium/sink")
 	    if err != nil {
 		    panic(err)
