@@ -1,5 +1,8 @@
-# Warp10Exporter [![Build Status](https://travis-ci.org/PierreZ/Warp10Exporter.svg?branch=master)](https://travis-ci.org/PierreZ/Warp10Exporter) [![GoDoc](https://godoc.org/github.com/PierreZ/Warp10Exporter?status.svg)](https://godoc.org/github.com/PierreZ/Warp10Exporter)
-A Go framework to generate and push metrics to Warp10
+# Warp10Exporter [![Go Report Card](https://goreportcard.com/badge/github.com/PierreZ/Warp10Exporter)](https://goreportcard.com/report/github.com/PierreZ/Warp10Exporter) [![Build Status](https://travis-ci.org/PierreZ/Warp10Exporter.svg?branch=master)](https://travis-ci.org/PierreZ/Warp10Exporter) [![GoDoc](https://godoc.org/github.com/PierreZ/Warp10Exporter?status.svg)](https://godoc.org/github.com/PierreZ/Warp10Exporter)
+A Go framework to generate and push metrics to [The Warp 10 Platform](http://www.warp10.io).
+
+## [Documentation](https://godoc.org/github.com/PierreZ/Warp10Exporter)
+
 
 ## Example
 
