@@ -45,6 +45,15 @@ func (gts *GTS) AddDatapoint(ts time.Time, value interface{}) *GTS {
 	return gts
 }
 
+// WithMapLabels is adding Labels from a Map
+func (gts *GTS) WithMapLabels(labels map[string]string) *GTS {
+
+	for key, value := range labels {
+		gts.Labels[key] = value
+	}
+	return gts
+}
+
 // WithLabels is adding Labels
 func (gts *GTS) WithLabels(labels Labels) *GTS {
 	gts.Labels = labels
