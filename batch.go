@@ -17,6 +17,9 @@ func NewBatch() *Batch {
 
 // Register is adding a GTS to a batch
 func (batch *Batch) Register(gts *GTS) {
+	if gts == nil {
+		return
+	}
 	(*batch)[gts.GetIdentifier()] = gts
 }
 
