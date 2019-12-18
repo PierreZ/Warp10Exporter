@@ -1,4 +1,4 @@
-package Warp10Exporter
+package warp10exporter
 
 import (
 	"bytes"
@@ -75,4 +75,19 @@ func TestIdentifier(t *testing.T) {
 		t.Errorf("ident1='%v', ident2='%v'", ident1, ident2)
 	}
 
+}
+
+func TestUberBatch(t *testing.T) {
+
+	var buf bytes.Buffer
+	batch1 := NewBatch()
+	batch2 := NewBatch()
+	batch2.Register(singleGTSSingleDatapoint)
+
+	batch1.RegisterBatch(batch2)
+	batch1.Print(&buf)
+
+	if buf.String() != singleGTSSingleDatapointString {
+		t.Errorf("Expected '%v', got '%v'", singleGTSSingleDatapointString, buf.String())
+	}
 }

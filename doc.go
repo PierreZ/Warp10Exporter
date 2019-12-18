@@ -1,5 +1,5 @@
 /*
-Package Warp10Exporter is an helper to create GTS for Warp10
+Package warp10exporter is an helper to create GTS for Warp10
 Example:
   package main
 
@@ -35,4 +35,4 @@ Example:
 
 For a full guide visit https://github.com/PierreZ/Warp10Exporter
 */
-package Warp10Exporter
+package warp10exporter

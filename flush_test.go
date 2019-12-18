@@ -1,4 +1,4 @@
-package Warp10Exporter
+package warp10exporter
 
 import (
 	"io/ioutil"

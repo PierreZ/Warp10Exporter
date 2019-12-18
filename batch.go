@@ -1,4 +1,4 @@
-package Warp10Exporter
+package warp10exporter
 
 import (
 	"bytes"
@@ -40,5 +40,16 @@ func (batch *Batch) Print(b *bytes.Buffer) {
 			b.WriteString("\n")
 		}
 		i++
+	}
+}
+
+// RegisterBatch is registering all GTS from a Batch to another batch.
+// You need to register first all GTS before registering an Batch
+func (batch *Batch) RegisterBatch(newBatch *Batch) {
+	if batch == nil {
+		return
+	}
+	for _, gts := range *newBatch {
+		batch.Register(gts)
 	}
 }
